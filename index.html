@@ -164,7 +164,48 @@
             font-size: 0.95rem;
             opacity: 0.8;
         }
-    </style>
+    </style>html {
+  scroll-behavior: smooth;
+}
+
+.hero {
+  background: radial-gradient(circle at top, #0f172a, #0b0f19);
+  padding-top: 140px;
+}
+
+.hero h2 {
+  font-size: 60px;
+  letter-spacing: 1px;
+}
+
+.hero p {
+  font-size: 22px;
+  opacity: 0.85;
+}
+
+.button {
+  transition: 0.3s;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  background: #00ffb3;
+}
+
+section h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.card {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  background: #1f2937;
+}
 </head>
 <body>
     <header>
@@ -180,8 +221,12 @@
 
     <section id="inicio" class="hero">
         <h2>NomadScan</h2>
-        <p>Explore • Descubra • Compartilhe</p>
-        <a class="button" href="#contato">Entrar na Lista de Espera</a>
+
+<p>Explore o mundo. Descubra lugares. Compartilhe experiências.</p>
+
+<a class="button" href="#contato">
+  Entrar na Lista de Espera
+</a>
     </section>
 
     <section id="sobre">
