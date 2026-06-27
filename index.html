@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NomadScan — Encontre os melhores destinos, custos de vida e oportunidades para nômades digitais ao redor do mundo.">
     <title>NomadScan</title>
     <style>
         :root {
             --primary: #00d084;
             --dark: #0b0f19;
             --gray: #111827;
+            --gray-light: #1f2937;
+            --text-muted: rgba(255, 255, 255, 0.7);
+            --header-height: 64px;
         }
 
         * {
@@ -17,113 +21,425 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Arial', Helvetica, sans-serif;
-            background: var(--dark);
-            color: white;
-            line-height: 1.6;
+        html {
             scroll-behavior: smooth;
         }
 
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--dark);
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* ── Header ── */
         header {
             position: fixed;
             top: 0;
             width: 100%;
+            height: var(--header-height);
             background: var(--gray);
-            padding: 15px 25px;
+            padding: 0 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 999;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         }
 
         header h1 {
-            font-size: 24px;
+            font-size: 1.5rem;
             color: var(--primary);
-            font-weight: bold;
+            letter-spacing: -0.5px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin-left: 25px;
             font-weight: 600;
-            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            transition: color 0.25s ease;
         }
 
-        nav a:hover {
+        nav a:hover,
+        nav a:focus-visible {
             color: var(--primary);
+            outline: none;
         }
 
+        /* ── Seções gerais ── */
         section {
-            padding: 100px 20px;
+            padding: calc(var(--header-height) + 80px) 24px 80px;
             min-height: 100vh;
         }
 
-        /* Hero Section */
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 580px;
+            margin-bottom: 56px;
+        }
+
+        /* ── Hero ── */
         .hero {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(11, 15, 25, 0.75), rgba(11, 15, 25, 0.85)), 
-                        url('https://picsum.photos/id/1015/1920/1080') center/cover no-repeat;
+            background:
+                linear-gradient(rgba(11, 15, 25, 0.72), rgba(11, 15, 25, 0.88)),
+                url('https://picsum.photos/id/1015/1920/1080') center / cover no-repeat;
             min-height: 100vh;
-            padding-top: 80px;
+            padding: var(--header-height) 24px 0;
         }
 
         .hero h2 {
-            font-size: 3.8rem;
+            font-size: clamp(2.2rem, 6vw, 4rem);
             color: var(--primary);
             margin-bottom: 20px;
             line-height: 1.1;
         }
 
         .hero p {
-            font-size: 1.5rem;
-            max-width: 650px;
-            opacity: 0.9;
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            max-width: 620px;
+            color: var(--text-muted);
             margin-bottom: 40px;
         }
 
+        /* ── Botão ── */
         .button {
             display: inline-block;
-            padding: 16px 36px;
+            padding: 15px 36px;
             background: var(--primary);
             color: #111827;
             border: none;
             border-radius: 8px;
-            font-weight: bold;
-            font-size: 1.15rem;
+            font-weight: 700;
+            font-size: 1rem;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 25px rgba(0, 208, 132, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(0, 208, 132, 0.35);
         }
 
-        /* Responsividade */
+        .button:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        /* ── Sobre ── */
+        #sobre {
+            background: var(--gray);
+        }
+
+        .sobre-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .sobre-img {
+            width: 100%;
+            border-radius: 12px;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            display: block;
+        }
+
+        .sobre-text p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        /* ── Funcionalidades ── */
+        #funcionalidades {
+            background: var(--dark);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--gray-light);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 32px 28px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 208, 132, 0.35);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* ── Preços ── */
+        #precos {
+            background: var(--gray);
+            text-align: center;
+        }
+
+        #precos .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .precos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .plano {
+            background: var(--gray-light);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 36px 28px;
+            transition: border-color 0.2s ease;
+        }
+
+        .plano.destaque {
+            border-color: var(--primary);
+        }
+
+        .plano-nome {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .plano-preco {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .plano-periodo {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+
+        .plano ul {
+            list-style: none;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+
+        .plano ul li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .plano ul li::before {
+            content: "✓ ";
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .button-outline {
+            display: inline-block;
+            padding: 13px 32px;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s ease, color 0.2s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .button-outline:hover {
+            background: var(--primary);
+            color: #111827;
+        }
+
+        /* ── Contato ── */
+        #contato {
+            background: var(--dark);
+        }
+
+        .contato-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contato-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contato-form input,
+        .contato-form textarea {
+            background: var(--gray-light);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 14px 18px;
+            color: white;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.2s ease;
+            resize: vertical;
+        }
+
+        .contato-form input:focus,
+        .contato-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .contato-form textarea {
+            min-height: 140px;
+        }
+
+        .contato-info p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .contato-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .contato-item span:first-child {
+            font-size: 1.4rem;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--gray);
+            text-align: center;
+            padding: 28px 24px;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* ── Responsive ── */
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2.8rem;
-            }
-            
-            .hero p {
-                font-size: 1.3rem;
-            }
-            
             header {
-                padding: 15px 20px;
+                padding: 0 20px;
             }
-            
+
+            nav {
+                gap: 16px;
+            }
+
             nav a {
-                margin-left: 15px;
-                font-size: 0.95rem;
+                font-size: 0.88rem;
+            }
+
+            section {
+                padding: calc(var(--header-height) + 56px) 20px 56px;
+            }
+
+            .sobre-grid,
+            .contato-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .sobre-img {
+                order: -1;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .plano-preco {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav a:not(:last-child) {
+                display: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, html {
+                scroll-behavior: auto !important;
+                transition: none !important;
+                animation: none !important;
             }
         }
     </style>
@@ -132,7 +448,7 @@
 
     <header>
         <h1>NomadScan</h1>
-        <nav>
+        <nav aria-label="Navegação principal">
             <a href="#sobre">Sobre</a>
             <a href="#funcionalidades">Funcionalidades</a>
             <a href="#precos">Preços</a>
@@ -140,27 +456,177 @@
         </nav>
     </header>
 
-    <section class="hero" id="home">
+    <!-- Hero -->
+    <section class="hero" id="home" aria-label="Início">
         <h2>Descubra o Mundo com Liberdade</h2>
         <p>Encontre os melhores destinos, custos de vida e oportunidades para nômades digitais ao redor do mundo.</p>
-        <a href="#funcionalidades" class="button">Explorar Destinos</a>
+        <a href="#funcionalidades" class="button" role="button">Explorar Destinos</a>
     </section>
 
-    <!-- Você pode adicionar mais seções aqui -->
+    <!-- Sobre -->
+    <section id="sobre">
+        <div class="section-inner">
+            <div class="sobre-grid">
+                <div class="sobre-text">
+                    <span class="section-tag">Sobre nós</span>
+                    <h2 class="section-title">Feito para quem trabalha de qualquer lugar</h2>
+                    <p>O NomadScan reúne dados reais sobre custo de vida, conectividade, segurança e comunidade em centenas de cidades — tudo num só lugar.</p>
+                    <p>Nossa missão é tornar a transição para o estilo de vida nômade mais simples, segura e informada para profissionais remotos de todo o mundo.</p>
+                </div>
+                <img
+                    class="sobre-img"
+                    src="https://picsum.photos/id/1039/800/600"
+                    alt="Pessoa trabalhando em laptop num café no exterior"
+                    loading="lazy"
+                >
+            </div>
+        </div>
+    </section>
+
+    <!-- Funcionalidades -->
+    <section id="funcionalidades">
+        <div class="section-inner">
+            <span class="section-tag">Funcionalidades</span>
+            <h2 class="section-title">Tudo que você precisa para partir</h2>
+            <p class="section-subtitle">Ferramentas práticas para planejar, comparar e decidir o seu próximo destino com confiança.</p>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">🗺️</div>
+                    <h3>Mapa de Destinos</h3>
+                    <p>Explore centenas de cidades com filtros de custo, clima, internet e segurança em tempo real.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💰</div>
+                    <h3>Calculadora de Custo</h3>
+                    <p>Compare seu estilo de vida atual com o custo estimado em qualquer destino do mundo.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛜</div>
+                    <h3>Índice de Conectividade</h3>
+                    <p>Dados reais de velocidade de internet, coworkings disponíveis e cobertura 4G/5G por região.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Score de Segurança</h3>
+                    <p>Avaliações atualizadas de segurança local, visto para nômades e clima regulatório.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <h3>Comunidade Ativa</h3>
+                    <p>Conecte-se com outros nômades, leia relatos reais e encontre grupos locais onde você vai.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📋</div>
+                    <h3>Checklist de Partida</h3>
+                    <p>Lista personalizada com documentos, contas bancárias, seguros e tudo que você não pode esquecer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preços -->
+    <section id="precos">
+        <div class="section-inner">
+            <span class="section-tag">Planos</span>
+            <h2 class="section-title">Comece grátis, evolua quando quiser</h2>
+            <p class="section-subtitle">Sem contrato, cancele quando quiser.</p>
+
+            <div class="precos-grid">
+                <div class="plano">
+                    <p class="plano-nome">Grátis</p>
+                    <p class="plano-preco">R$ 0</p>
+                    <p class="plano-periodo">para sempre</p>
+                    <ul>
+                        <li>Acesso a 30 destinos</li>
+                        <li>Mapa básico</li>
+                        <li>Calculadora de custo</li>
+                    </ul>
+                    <a href="#contato" class="button-outline">Começar grátis</a>
+                </div>
+
+                <div class="plano destaque">
+                    <p class="plano-nome">Pro</p>
+                    <p class="plano-preco">R$ 29</p>
+                    <p class="plano-periodo">por mês</p>
+                    <ul>
+                        <li>Destinos ilimitados</li>
+                        <li>Índice de conectividade</li>
+                        <li>Score de segurança</li>
+                        <li>Comunidade exclusiva</li>
+                        <li>Checklist personalizado</li>
+                    </ul>
+                    <a href="#contato" class="button">Assinar Pro</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato">
+        <div class="section-inner">
+            <div class="contato-grid">
+                <div class="contato-info">
+                    <span class="section-tag">Contato</span>
+                    <h2 class="section-title">Fale com a gente</h2>
+                    <p>Dúvidas, parcerias ou sugestões? Responderemos em até 24 horas.</p>
+                    <div class="contato-item">
+                        <span>📧</span>
+                        <span>contato@nomadscan.com</span>
+                    </div>
+                    <div class="contato-item">
+                        <span>🌐</span>
+                        <span>nomadscan.com</span>
+                    </div>
+                    <div class="contato-item">
+                        <span>📍</span>
+                        <span>100% remoto — assim como você</span>
+                    </div>
+                </div>
+
+                <div class="contato-form" role="form" aria-label="Formulário de contato">
+                    <input type="text" placeholder="Seu nome" aria-label="Nome">
+                    <input type="email" placeholder="Seu e-mail" aria-label="E-mail">
+                    <textarea placeholder="Sua mensagem" aria-label="Mensagem"></textarea>
+                    <button class="button" type="button">Enviar mensagem</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 <a href="#home">NomadScan</a>. Feito com ☕ para nômades digitais.</p>
+    </footer>
 
     <script>
-        // Scroll suave para links internos
+        // Scroll suave para links internos (fallback para navegadores sem suporte a scroll-behavior CSS)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+            anchor.addEventListener('click', function (e) {
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
+                if (!target) return;
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Destaque no link ativo da nav ao rolar
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.style.color = link.getAttribute('href') === `#${entry.target.id}`
+                            ? 'var(--primary)'
+                            : '';
                     });
                 }
             });
-        });
+        }, { threshold: 0.4 });
+
+        sections.forEach(s => observer.observe(s));
     </script>
+
 </body>
 </html>
