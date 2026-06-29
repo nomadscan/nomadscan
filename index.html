@@ -3,223 +3,213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>NomadScan</title>
-
-<meta name="description" content="NomadScan — Explore destinos, descubra lugares incríveis e planeje suas próximas viagens pelo mundo.">
+<title>NomadScan | Plataforma para Drones</title>
 
 <style>
-:root {
-  --primary:#00d084;
-  --dark:#0b0f19;
-  --gray:#111827;
-  --text:#ffffff;
-  --muted:rgba(255,255,255,0.7);
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
 }
 
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, Helvetica, sans-serif;
+body{
+background:#08111f;
+color:white;
 }
 
-html { scroll-behavior:smooth; }
-
-body {
-  background:var(--dark);
-  color:var(--text);
+header{
+background:#0d1b2a;
+padding:20px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #1f3b5b;
 }
 
-/* HEADER */
-header {
-  position:fixed;
-  top:0;
-  width:100%;
-  background:var(--gray);
-  padding:15px 25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  z-index:999;
+.logo{
+font-size:30px;
+font-weight:bold;
+color:#00d4ff;
 }
 
-header h1 {
-  color:var(--primary);
-  font-size:20px;
+nav a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+transition:.3s;
 }
 
-nav a {
-  color:white;
-  text-decoration:none;
-  margin-left:18px;
-  font-weight:bold;
+nav a:hover{
+color:#00d4ff;
 }
 
-nav a:hover {
-  color:var(--primary);
+.hero{
+
+padding:70px 20px;
+text-align:center;
 }
 
-/* SEÇÕES */
-section {
-  padding:120px 20px;
-  min-height:100vh;
+.hero h1{
+font-size:48px;
+margin-bottom:20px;
 }
 
-.hero {
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  background:radial-gradient(circle at top,#0f172a,#0b0f19);
+.hero p{
+font-size:20px;
+color:#b7c6d9;
+max-width:700px;
+margin:auto;
 }
 
-.hero h2 {
-  font-size:52px;
-  color:var(--primary);
+.botao{
+display:inline-block;
+margin-top:35px;
+padding:15px 35px;
+background:#00d4ff;
+color:black;
+font-weight:bold;
+border-radius:8px;
+text-decoration:none;
 }
 
-.hero p {
-  font-size:20px;
-  color:var(--muted);
-  max-width:600px;
-  margin:20px 0;
+.cards{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:40px;
 }
 
-.button {
-  background:var(--primary);
-  color:#000;
-  padding:14px 28px;
-  border:none;
-  border-radius:8px;
-  font-weight:bold;
-  text-decoration:none;
-  cursor:pointer;
-  transition:0.3s;
+.card{
+
+background:#12233d;
+padding:25px;
+border-radius:15px;
+transition:.3s;
+border:1px solid #1d3d63;
 }
 
-.button:hover {
-  transform:scale(1.05);
+.card:hover{
+
+transform:translateY(-6px);
 }
 
-/* CARDS */
-.cards {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
-  margin-top:30px;
+.card h2{
+
+margin-bottom:15px;
+color:#00d4ff;
 }
 
-.card {
-  background:var(--gray);
-  padding:22px;
-  border-radius:10px;
-  text-align:center;
-  transition:0.3s;
+footer{
+
+text-align:center;
+padding:30px;
+color:#7c8ca2;
+margin-top:30px;
+border-top:1px solid #1d3d63;
 }
 
-.card:hover {
-  transform:translateY(-6px);
-  background:#1f2937;
-}
-
-/* FORM */
-form input, form textarea {
-  width:100%;
-  padding:12px;
-  margin:8px 0;
-  border:none;
-  border-radius:6px;
-  background:#1f2937;
-  color:white;
-}
-
-footer {
-  text-align:center;
-  padding:30px;
-  background:var(--gray);
-  color:var(--muted);
-}
 </style>
+
 </head>
 
 <body>
 
 <header>
-  <h1>NomadScan</h1>
 
-  <nav>
-    <a href="#inicio">Início</a>
-    <a href="#sobre">Sobre</a>
-    <a href="#recursos">Recursos</a>
-    <a href="#contato">Contato</a>
-  </nav>
+<div class="logo">🚁 NomadScan</div>
+
+<nav>
+
+<a href="#">Dashboard</a>
+
+<a href="#">Missões</a>
+
+<a href="#">Drones</a>
+
+<a href="#">Mapa</a>
+
+<a href="#">Live</a>
+
+</nav>
+
 </header>
 
-<!-- HERO -->
-<section id="inicio" class="hero">
+<section class="hero">
 
-  <h2>NomadScan</h2>
+<h1>A Plataforma Inteligente para Operações com Drones</h1>
 
-  <p>Explore o mundo. Descubra lugares incríveis. Planeje sua próxima aventura.</p>
+<p>
 
-  <a class="button" href="#recursos">Começar a explorar</a>
+Planeje missões, acompanhe voos, visualize mapas,
+transmita imagens ao vivo e gerencie sua operação em um único lugar.
 
-</section>
+</p>
 
-<!-- SOBRE -->
-<section id="sobre">
-
-  <h2>Sobre a NomadScan</h2>
-
-  <p style="color:rgba(255,255,255,0.7);max-width:700px;margin-top:15px;">
-    A NomadScan é uma plataforma criada para ajudar você a descobrir destinos,
-    comparar lugares e planejar viagens de forma simples e visual.
-  </p>
+<a class="botao" href="#">Começar Agora</a>
 
 </section>
 
-<!-- RECURSOS -->
-<section id="recursos">
+<section class="cards">
 
-  <h2>Recursos</h2>
+<div class="card">
 
-  <div class="cards">
+<h2>🚁 Missões</h2>
 
-    <div class="card">🗺️ Mapa de destinos</div>
-    <div class="card">📍 Lugares próximos</div>
-    <div class="card">📸 Fotos reais</div>
-    <div class="card">⭐ Avaliações</div>
-    <div class="card">🧭 Rotas e trilhas</div>
-    <div class="card">❤️ Favoritos</div>
+<p>Organize e acompanhe todas as operações realizadas pelos drones.</p>
 
-  </div>
+</div>
 
-</section>
+<div class="card">
 
-<!-- CONTATO -->
-<section id="contato">
+<h2>📡 Transmissão ao Vivo</h2>
 
-  <h2>Lista de Espera</h2>
+<p>Visualize imagens em tempo real diretamente da aeronave.</p>
 
-  <p style="color:rgba(255,255,255,0.7)">
-    Seja um dos primeiros a testar a NomadScan.
-  </p>
+</div>
 
-  <form>
-    <input type="text" placeholder="Seu nome">
-    <input type="email" placeholder="Seu e-mail">
-    <textarea placeholder="Mensagem (opcional)"></textarea>
+<div class="card">
 
-    <button class="button" type="button">Entrar na lista</button>
-  </form>
+<h2>🗺️ Mapas</h2>
+
+<p>Planeje rotas, waypoints e acompanhe a posição das missões.</p>
+
+</div>
+
+<div class="card">
+
+<h2>📊 Dashboard</h2>
+
+<p>Controle drones, pilotos e indicadores operacionais em tempo real.</p>
+
+</div>
+
+<div class="card">
+
+<h2>🤖 Inteligência Artificial</h2>
+
+<p>Detecção automática de pessoas, veículos, incêndios e objetos.</p>
+
+</div>
+
+<div class="card">
+
+<h2>☁️ Nuvem</h2>
+
+<p>Armazene vídeos, fotos e relatórios das missões com segurança.</p>
+
+</div>
 
 </section>
 
 <footer>
-  © 2026 NomadScan — Explore sem limites
+
+© 2026 NomadScan • Plataforma Brasileira para Operações com Drones
+
 </footer>
 
 </body>
+
 </html>
