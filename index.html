@@ -1,215 +1,45 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NomadScan | Plataforma para Drones</title>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-background:#08111f;
-color:white;
-}
-
-header{
-background:#0d1b2a;
-padding:20px 40px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-border-bottom:1px solid #1f3b5b;
-}
-
-.logo{
-font-size:30px;
-font-weight:bold;
-color:#00d4ff;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-margin-left:25px;
-transition:.3s;
-}
-
-nav a:hover{
-color:#00d4ff;
-}
-
-.hero{
-
-padding:70px 20px;
-text-align:center;
-}
-
-.hero h1{
-font-size:48px;
-margin-bottom:20px;
-}
-
-.hero p{
-font-size:20px;
-color:#b7c6d9;
-max-width:700px;
-margin:auto;
-}
-
-.botao{
-display:inline-block;
-margin-top:35px;
-padding:15px 35px;
-background:#00d4ff;
-color:black;
-font-weight:bold;
-border-radius:8px;
-text-decoration:none;
-}
-
-.cards{
-
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-padding:40px;
-}
-
-.card{
-
-background:#12233d;
-padding:25px;
-border-radius:15px;
-transition:.3s;
-border:1px solid #1d3d63;
-}
-
-.card:hover{
-
-transform:translateY(-6px);
-}
-
-.card h2{
-
-margin-bottom:15px;
-color:#00d4ff;
-}
-
-footer{
-
-text-align:center;
-padding:30px;
-color:#7c8ca2;
-margin-top:30px;
-border-top:1px solid #1d3d63;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<header>
-
-<div class="logo">🚁 NomadScan</div>
-
-<nav>
-
-<a href="#">Dashboard</a>
-
-<a href="#">Missões</a>
-
-<a href="#">Drones</a>
-
-<a href="#">Mapa</a>
-
-<a href="#">Live</a>
-
-</nav>
-
-</header>
-
-<section class="hero">
-
-<h1>A Plataforma Inteligente para Operações com Drones</h1>
-
-<p>
-
-Planeje missões, acompanhe voos, visualize mapas,
-transmita imagens ao vivo e gerencie sua operação em um único lugar.
-
-</p>
-
-<a class="botao" href="#">Começar Agora</a>
-
-</section>
-
-<section class="cards">
-
-<div class="card">
-
-<h2>🚁 Missões</h2>
-
-<p>Organize e acompanhe todas as operações realizadas pelos drones.</p>
-
-</div>
-
-<div class="card">
-
-<h2>📡 Transmissão ao Vivo</h2>
-
-<p>Visualize imagens em tempo real diretamente da aeronave.</p>
-
-</div>
-
-<div class="card">
-
-<h2>🗺️ Mapas</h2>
-
-<p>Planeje rotas, waypoints e acompanhe a posição das missões.</p>
-
-</div>
-
-<div class="card">
-
-<h2>📊 Dashboard</h2>
-
-<p>Controle drones, pilotos e indicadores operacionais em tempo real.</p>
-
-</div>
-
-<div class="card">
-
-<h2>🤖 Inteligência Artificial</h2>
-
-<p>Detecção automática de pessoas, veículos, incêndios e objetos.</p>
-
-</div>
-
-<div class="card">
-
-<h2>☁️ Nuvem</h2>
-
-<p>Armazene vídeos, fotos e relatórios das missões com segurança.</p>
-
-</div>
-
-</section>
-
-<footer>
-
-© 2026 NomadScan • Plataforma Brasileira para Operações com Drones
-
 </footer>
 
-</body>
+<script>
+  (function(){
+    var start = Date.now();
+    var recEl = document.getElementById('rec-time');
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function tickClock(){
+      var s = Math.floor((Date.now() - start)/1000);
+      var h = Math.floor(s/3600);
+      var m = Math.floor((s%3600)/60);
+      var sec = s%60;
+      recEl.textContent = pad(h) + ':' + pad(m) + ':' + pad(sec);
+    }
+    setInterval(tickClock, 1000);
 
+    var altEl = document.getElementById('hud-alt');
+    var spdEl = document.getElementById('hud-spd');
+    var gpsEl = document.getElementById('hud-gps');
+    var batEl = document.getElementById('hud-bat');
+
+    var alt = 64.2, spd = 12.4, lat = -19.4170, lon = -43.6080, bat = 76;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function jitter(){
+      alt = Math.max(20, alt + (Math.random()-0.5)*2.2);
+      spd = Math.max(0, spd + (Math.random()-0.5)*1.6);
+      lat += (Math.random()-0.5)*0.0006;
+      lon += (Math.random()-0.5)*0.0006;
+      bat = Math.max(11, bat - (Math.random()*0.06));
+
+      altEl.textContent = alt.toFixed(1) + ' m';
+      spdEl.textContent = spd.toFixed(1) + ' km/h';
+      gpsEl.textContent = lat.toFixed(4) + ', ' + lon.toFixed(4);
+      batEl.textContent = Math.round(bat) + '%';
+    }
+
+    if(!reduceMotion){
+      setInterval(jitter, 1800);
+    }
+  })();
+</script>
+
+</body>
 </html>
